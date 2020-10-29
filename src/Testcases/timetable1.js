@@ -48,125 +48,125 @@ const timetable1 =
     },
     courseTimeItems: {
         '0': {
-        '0': {
-            timeID: 0,
-            dayOfWeek: 'Sun',
-            session: '08'
+            '0': {
+                timeID: 0,
+                dayOfWeek: 'Sun',
+                session: '08'
+            },
+            '1': {
+                timeID: 1,
+                dayOfWeek: 'Sun',
+                session: '09'
+            },
+            '2': {
+                timeID: 2,
+                dayOfWeek: 'Wed',
+                session: '03'
+            },
+            nextTimeID: 3
         },
         '1': {
-            timeID: 1,
-            dayOfWeek: 'Sun',
-            session: '09'
+            '0': {
+                timeID: 0,
+                dayOfWeek: 'Mon',
+                session: '05'
+            },
+            '1': {
+                timeID: 1,
+                dayOfWeek: 'Mon',
+                session: '06'
+            },
+            '2': {
+                timeID: 2,
+                dayOfWeek: 'Thu',
+                session: '05'
+            },
+            '3': {
+                timeID: 3,
+                dayOfWeek: 'Thu',
+                session: '06'
+            },
+            nextTimeID: 4
         },
         '2': {
-            timeID: 2,
-            dayOfWeek: 'Wed',
-            session: '03'
-        },
-        nextTimeID: 3
-        },
-        '1': {
-        '0': {
-            timeID: 0,
-            dayOfWeek: 'Mon',
-            session: '05'
-        },
-        '1': {
-            timeID: 1,
-            dayOfWeek: 'Mon',
-            session: '06'
-        },
-        '2': {
-            timeID: 2,
-            dayOfWeek: 'Thu',
-            session: '05'
+            '0': {
+                timeID: 0,
+                dayOfWeek: 'Mon',
+                session: '08'
+            },
+            '1': {
+                timeID: 1,
+                dayOfWeek: 'Mon',
+                session: '09'
+            },
+            '2': {
+                timeID: 2,
+                dayOfWeek: 'Wed',
+                session: '08'
+            },
+            '3': {
+                timeID: 3,
+                dayOfWeek: 'Wed',
+                session: '09'
+            },
+            nextTimeID: 4
         },
         '3': {
-            timeID: 3,
-            dayOfWeek: 'Thu',
-            session: '06'
-        },
-        nextTimeID: 4
-        },
-        '2': {
-        '0': {
-            timeID: 0,
-            dayOfWeek: 'Mon',
-            session: '08'
-        },
-        '1': {
-            timeID: 1,
-            dayOfWeek: 'Mon',
-            session: '09'
-        },
-        '2': {
-            timeID: 2,
-            dayOfWeek: 'Wed',
-            session: '08'
-        },
-        '3': {
-            timeID: 3,
-            dayOfWeek: 'Wed',
-            session: '09'
-        },
-        nextTimeID: 4
-        },
-        '3': {
-        '0': {
-            timeID: 0,
-            dayOfWeek: 'Tue',
-            session: '02'
-        },
-        '1': {
-            timeID: 1,
-            dayOfWeek: 'Tue',
-            session: '03'
-        },
-        '2': {
-            timeID: 2,
-            dayOfWeek: 'Tue',
-            session: '04'
-        },
-        nextTimeID: 3
+            '0': {
+                timeID: 0,
+                dayOfWeek: 'Tue',
+                session: '02'
+            },
+            '1': {
+                timeID: 1,
+                dayOfWeek: 'Tue',
+                session: '03'
+            },
+            '2': {
+                timeID: 2,
+                dayOfWeek: 'Tue',
+                session: '04'
+            },
+            nextTimeID: 3
         },
         '4': {
-        '0': {
-            timeID: 0,
-            dayOfWeek: 'Thu',
-            session: '02'
-        },
-        '1': {
-            timeID: 1,
-            dayOfWeek: 'Thu',
-            session: '03'
-        },
-        nextTimeID: 2
+            '0': {
+                timeID: 0,
+                dayOfWeek: 'Thu',
+                session: '02'
+            },
+            '1': {
+                timeID: 1,
+                dayOfWeek: 'Thu',
+                session: '03'
+            },
+            nextTimeID: 2
         },
         '5': {
-        '0': {
-            timeID: 0,
-            dayOfWeek: 'Tue',
-            session: '05'
-        },
-        '1': {
-            timeID: 1,
-            dayOfWeek: 'Tue',
-            session: '06'
-        },
-        nextTimeID: 2
+            '0': {
+                timeID: 0,
+                dayOfWeek: 'Tue',
+                session: '05'
+            },
+            '1': {
+                timeID: 1,
+                dayOfWeek: 'Tue',
+                session: '06'
+            },
+            nextTimeID: 2
         },
         '6': {
-        '0': {
-            timeID: 0,
-            dayOfWeek: 'Thu',
-            session: '08'
-        },
-        '1': {
-            timeID: 1,
-            dayOfWeek: 'Thu',
-            session: '09'
-        },
-        nextTimeID: 2
+            '0': {
+                timeID: 0,
+                dayOfWeek: 'Thu',
+                session: '08'
+            },
+            '1': {
+                timeID: 1,
+                dayOfWeek: 'Thu',
+                session: '09'
+            },
+            nextTimeID: 2
         }
     },
 

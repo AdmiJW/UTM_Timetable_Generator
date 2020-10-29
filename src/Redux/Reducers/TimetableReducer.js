@@ -8,6 +8,7 @@ import timeFlattener from '../../LogicUtils/TimeFlattener';
 //  Testcases
 import timetable1 from '../../Testcases/timetable1';
 import emptyTimetable from '../../Testcases/emptyTimetable';
+import defaultTimetable from '../../Testcases/defaultTimetable';
 
 
 /* ==================================================================================================================
@@ -37,7 +38,7 @@ courseTimeItems - Shall be in sync with the courseItems. It is also an object ma
 //==============================
 //  Initial State
 //==============================
-const initialState = timetable1;
+const initialState = defaultTimetable;
 
 
 
