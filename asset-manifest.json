@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/UTM_Timetable_Generator/static/css/main.1b23514f.chunk.css",
+    "main.js": "/UTM_Timetable_Generator/static/js/main.c9e2bea1.chunk.js",
+    "main.js.map": "/UTM_Timetable_Generator/static/js/main.c9e2bea1.chunk.js.map",
+    "runtime-main.js": "/UTM_Timetable_Generator/static/js/runtime-main.cacfc23b.js",
+    "runtime-main.js.map": "/UTM_Timetable_Generator/static/js/runtime-main.cacfc23b.js.map",
+    "static/js/2.62a5bf3d.chunk.js": "/UTM_Timetable_Generator/static/js/2.62a5bf3d.chunk.js",
+    "static/js/2.62a5bf3d.chunk.js.map": "/UTM_Timetable_Generator/static/js/2.62a5bf3d.chunk.js.map",
+    "index.html": "/UTM_Timetable_Generator/index.html",
+    "precache-manifest.faa0a9c01dbb6646fe4a5bf37598e90b.js": "/UTM_Timetable_Generator/precache-manifest.faa0a9c01dbb6646fe4a5bf37598e90b.js",
+    "service-worker.js": "/UTM_Timetable_Generator/service-worker.js",
+    "static/css/main.1b23514f.chunk.css.map": "/UTM_Timetable_Generator/static/css/main.1b23514f.chunk.css.map",
+    "static/js/2.62a5bf3d.chunk.js.LICENSE.txt": "/UTM_Timetable_Generator/static/js/2.62a5bf3d.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.cacfc23b.js",
+    "static/js/2.62a5bf3d.chunk.js",
+    "static/css/main.1b23514f.chunk.css",
+    "static/js/main.c9e2bea1.chunk.js"
+  ]
+}
