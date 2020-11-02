@@ -1,17 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 //  Redux Action Creator
-import TimeActions from '../Redux/Actions/TimeActions';
+import TimeActions from '../../Redux/Actions/TimeActions';
 
 
-class CourseTimeItem extends React.Component {
+
+
+class CourseTimeItem extends React.PureComponent {
     constructor(props) {
         super(props);
 
         this.deleteTime = this.deleteTime.bind(this);
         this.changeTimeInfo = this.changeTimeInfo.bind(this);
     }
+
 
     componentDidMount() {
         this.timeItemHTML = document.getElementById(`course-item__times__entry-${ this.props.courseID}-${ this.props.timeInfo.timeID }`);
@@ -21,6 +25,7 @@ class CourseTimeItem extends React.Component {
     }
 
 
+    //  Allow the div to have fade out animation first, then only we actually remove the div
     deleteTime() {
         this.timeItemHTML.classList.add('fade-out');
 
@@ -29,6 +34,8 @@ class CourseTimeItem extends React.Component {
         }, 500);
     }
 
+
+    //  When the dayOfWeek or session of the time item is changed, update the information respectively
     changeTimeInfo() {
         this.props.changeTimeInfo( this.props.courseID, this.props.timeInfo.timeID, {
             timeID: this.props.timeInfo.timeID,
@@ -80,6 +87,16 @@ class CourseTimeItem extends React.Component {
         );
         //=================================== JSX ==========================================
     }
+}
+
+
+
+/* =================================================
+    Proptypes, MapStateToProps, MapDispatchToProps
+==================================================== */
+CourseTimeItem.propTypes = {
+    deleteTime: PropTypes.func.isRequired,
+    changeTimeInfo: PropTypes.func.isRequired
 }
 
 

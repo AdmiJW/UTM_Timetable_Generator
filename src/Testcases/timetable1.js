@@ -1,6 +1,10 @@
 const timetable1 = 
 {
+
     nextCourseID: 7,
+
+    isPreviewOpen: false,
+    isSettingOpen: false,
 
     courseItems: {
         '0': {
@@ -171,9 +175,19 @@ const timetable1 =
     },
 
 
-    timetableRenderData: {
-        isPreviewOpen: false,
-        renderData: null
+    timetableRenderData: null,
+
+    settings: {
+        theme: 'default',
+
+        courseNameFontSize: 25, 
+        lecturerNameFontSize: 15,
+        courseCodeFontSize: 13,
+
+        gridWidth: 200,
+        gridHeight: 150,
+
+        noOfSessions: 11
     }
 };
 

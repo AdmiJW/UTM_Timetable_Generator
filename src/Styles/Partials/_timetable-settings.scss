@@ -1,0 +1,121 @@
+
+@import 'config';
+
+
+.settings {
+
+    &.hidden {
+        display: none;
+    }
+    &.transitionOut {
+        @include fade-out;
+    }
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    @include flex(column, flex-start, stretch);
+    padding: 20px 10px;
+
+    width: unquote('calc(100vw - 40px)');
+    max-width: 1000px;
+    height: 94vh;
+    margin: 3vh 3vw;
+    @include largeScreenMargin();
+    @include fadeInEffect();
+
+    z-index: 1000;
+    background-color: #ecf0f1;
+
+    border-radius: 20px;
+
+    &__closebtn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 100;
+
+        @extend %btn;
+        box-shadow: none;
+        @include font('roboto', 3rem, red, center, 'regular');
+    }
+
+    &__title {
+        @include font('roboto', 4.5rem, black, center, 'light');
+    }
+    &__sizeEstimateMsg {
+        @include font('roboto', 1.5rem, grey, center, 'light');
+
+        &__value {
+            color: red;
+        }
+    }
+
+    &__wrapper {
+        @include flex(column, flex-start, center);
+        padding: 20px 5px;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    &__category {
+        padding: 5px;
+        margin: 10px 0px;
+        background-color: rgb(228, 228, 228);
+        border-radius: 10px;
+        box-shadow: 0px -5px 0px 0px darken(white, 20%);
+        width: unquote(' max(70%, 250px) ');
+
+        &__title {
+            @include font('roboto', 2.5rem, rgb(153, 153, 153), center, 'bold');
+            z-index: 1;
+        }
+    }
+
+    &__theme {
+        &__wrapper {
+            padding: 10px;
+            @include flex(row, space-around, center);
+        }
+        &__select {
+            @include selectHTML(1.5rem);
+        }
+    }
+
+    &__gridProps {
+        text-align: center;
+
+        &__wrapper {
+            padding: 10px;
+            @include flex(row, space-around, flex-end);
+        }
+
+        &__inputGroup {
+            @include flex(column, flex-start, center);
+
+            label {
+                @include font('roboto', 1.5rem, black, center, 'bold');
+            }
+            
+            input {
+                @include selectHTML(1.2rem);
+                width: 95%;
+                padding: 5px 5px;
+            }
+        }
+
+        &__preview {
+            margin: auto;
+            @include flex(column, center, center);
+            background-color: #e74c3c;
+            @include font('roboto', initial, white, center, 'regular');
+        }
+    }
+
+    &__noSessions {
+        text-align: center;
+        &__select {
+            @include selectHTML(1.5rem);
+        }
+    }
+}

@@ -6,32 +6,11 @@ import clashChecker from '../../LogicUtils/ClashChecker';
 import timeFlattener from '../../LogicUtils/TimeFlattener';
 
 //  Testcases
-import timetable1 from '../../Testcases/timetable1';
-import emptyTimetable from '../../Testcases/emptyTimetable';
+// import timetable1 from '../../Testcases/timetable1';
+// import emptyTimetable from '../../Testcases/emptyTimetable';
 import defaultTimetable from '../../Testcases/defaultTimetable';
 
 
-/* ==================================================================================================================
-The state basically looks like this:
-
-courseItems - An object, which the key is the courseID, mapping to another object representing the course itself.
-              The course object contains the following:
-              {
-                  courseID:                     the ID of itself
-                  courseName:                   the name of the course
-                  lecturerName:                 the name of the lecturer
-                  courseCode:                   the code of the course
-              }
-
-courseTimeItems - Shall be in sync with the courseItems. It is also an object mapping from courseID to another object
-                  representing the course times. The course times object maps from timeID to object of individual time
-                  which contains the following:
-                  {
-                      timeID:                   the ID of this time in this course
-                      dayOfWeek:                the day of week of this course
-                      session:                  the session in which the course is held
-                  }
-================================================================================================================= */
 
 
 
@@ -42,11 +21,15 @@ const initialState = defaultTimetable;
 
 
 
-
+//==============================
+//  Reducer
+//==============================
 function timetableReducer(state = initialState, action ) {
     let { courseItems, courseTimeItems } = state;
 
     switch (action.type) {
+
+        //======================    COURSE ACTIONS ==============================
         
         case ActionTypes.ADD_COURSE: {
             const newCourseItem = courseFactory( state.nextCourseID );
@@ -61,6 +44,7 @@ function timetableReducer(state = initialState, action ) {
 
             return Object.assign({}, state, { courseItems, courseTimeItems, nextCourseID: state.nextCourseID+1 } );
         }
+
         case ActionTypes.DELETE_COURSE: {
             const { courseIndexToDel }  = action.payload;
 
@@ -72,6 +56,7 @@ function timetableReducer(state = initialState, action ) {
 
             return Object.assign({}, state, { courseItems, courseTimeItems } );
         }
+
         case ActionTypes.CHANGE_COURSE_INFO: {
             const { newInfoValues } = action.payload;
             const courseIndexToChange = newInfoValues.courseID;
@@ -82,6 +67,7 @@ function timetableReducer(state = initialState, action ) {
             return Object.assign({}, state, { courseItems } );
         }
 
+        //======================    TIME ACTIONS     ==============================
 
         case ActionTypes.ADD_TIME: {
             const { courseIndexToAdd } = action.payload;
@@ -122,9 +108,7 @@ function timetableReducer(state = initialState, action ) {
             return Object.assign( {}, state, { courseTimeItems } );
         }
 
-
-
-
+        //======================    PREVIEW TIMETABLE ACTIONS     ==============================
 
         case ActionTypes.VIEW_TIMETABLE: {
             // Check for clashing time slots
@@ -136,19 +120,51 @@ function timetableReducer(state = initialState, action ) {
                 return state;
             }
             const flattenedVirtualTimetable = timeFlattener( virtualTimetable );
-            const timetableRenderData = {
-                isPreviewOpen: true,
-                renderData: flattenedVirtualTimetable
-            };
 
-            return Object.assign({}, state, { timetableRenderData } );
+            return Object.assign({}, state, { timetableRenderData: flattenedVirtualTimetable, isPreviewOpen: true } );
         }
 
         case ActionTypes.CLOSE_PREVIEW: {
-            const timetableRenderData = Object.assign({}, state.timetableRenderData);
-            timetableRenderData.isPreviewOpen = false;
+            return Object.assign({}, state, { isPreviewOpen: false} );
+        }
 
-            return Object.assign({}, state, { timetableRenderData} );
+        //======================    SETTING ACTIONS     ==============================
+
+        case ActionTypes.OPEN_SETTING: {
+            return Object.assign({}, state, { isSettingOpen: true} );
+        }
+
+        case ActionTypes.CLOSE_SETTING: {
+            return Object.assign({}, state, { isSettingOpen: false} );
+        }
+
+        case ActionTypes.CHANGE_SETTING: {
+            const eventTarget = action.payload.settingEvent.target;
+            const settings = Object.assign({}, state.settings);
+            switch( eventTarget.id ) {
+                case 'theme':
+                    settings.theme = eventTarget.value;
+                    break;
+                case 'courseName-fontsize':
+                    settings.courseNameFontSize = Math.min( 70, Math.max(eventTarget.value, 0) );
+                    break;
+                case 'lecturerName-fontsize':
+                    settings.lecturerNameFontSize = Math.min( 70, Math.max(eventTarget.value, 0) );
+                    break;
+                case 'courseCode-fontsize':
+                    settings.courseCodeFontSize = Math.min( 70, Math.max(eventTarget.value, 0) );
+                    break;
+                case 'noOfSessions':
+                    settings.noOfSessions = eventTarget.value;
+                    break;
+                case 'gridWidth':
+                    settings.gridWidth = Math.min( 400, Math.max(eventTarget.value, 0) );
+                    break;
+                case 'gridHeight':
+                    settings.gridHeight = Math.min( 400, Math.max(eventTarget.value, 0) );
+                    break;
+            }
+            return Object.assign({}, state, { settings });
         }
 
         default:

@@ -1,0 +1,96 @@
+
+@import 'config';
+
+
+
+
+//============================================
+// Timetable Div - Previewer 
+//============================================
+.timetable {
+
+    &.hidden {
+        display: none;
+    }
+    &.transitionOut &__previewer {
+        @include fade-out;
+    }
+
+
+
+    &__previewer {
+        @include flex(column, center, center);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: unquote('calc(100vw - 40px)');
+        max-width: 1000px;
+        height: 94vh;
+        margin: 3vh 3vw;
+        @include largeScreenMargin();
+        @include fadeInEffect();
+        
+        z-index: 1000;
+        background-color: #ecf0f1;
+        overflow-x: auto;
+    
+        border-radius: 20px;
+    
+        &__closebtn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 100;
+    
+            @extend %btn;
+            box-shadow: none;
+            @include font('roboto', 3rem, red, center, 'regular');
+        }
+
+        &__downloadbtn {
+            @extend %btn;
+            @include font('roboto', 1.5rem, #e67e22, center, 'regular');
+            border: solid 2px #e67e22 !important;
+            border-radius: 20px;
+            padding: 10px;
+            margin: 5px;
+        }
+
+        &__wrapper {
+            @include wrapperForScrolling(100%, 'true');
+            overflow-y: hidden;
+            height: 85%;
+        }
+
+        .konvajs-content {
+            width: 100% !important;
+            height: 100% !important;
+
+            canvas {
+                height: 100% !important;
+                width: initial !important;
+                margin: auto !important;
+            }
+        }
+    
+    }
+}
+
+
+
+
+//=========================================================================
+//  MEDIA QUERIES
+//=========================================================================
+
+//  When the height is over 550px, set the minimum height for the timetable
+@media screen and (min-height: 550px) {
+    .timetable {
+        &__previewer {
+            &__svg {
+                min-height: 400px;
+                min-width: 1200px;
+            }
+        }
+    }
+}

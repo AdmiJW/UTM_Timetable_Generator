@@ -1,13 +1,26 @@
 const emptyTimetable = {
+    isPreviewOpen: false,
+    isSettingOpen: false,
+
     nextCourseID: 0,
 
     courseItems: {},
 
     courseTimeItems: {},
 
-    timetableRenderData: {
-        isPreviewOpen: false,
-        renderData: null
+    timetableRenderData: null,
+
+    settings: {
+        theme: 'default',
+
+        courseNameFontSize: 25, 
+        lecturerNameFontSize: 15,
+        courseCodeFontSize: 13,
+
+        gridWidth: 200,
+        gridHeight: 150,
+
+        noOfSessions: 11
     }
 }
 

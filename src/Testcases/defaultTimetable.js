@@ -1,12 +1,15 @@
 const defaultTimetable = {
+    isPreviewOpen: false,
+    isSettingOpen: false,
+
     nextCourseID: 1,
 
     courseItems: {
         '0': {
         courseID: 0,
-        courseName: 'Input Course Name',
-        lecturerName: 'Input Lecturer Name',
-        courseCode: 'Input Course Code'
+        courseName: 'Enter Course Name',
+        lecturerName: 'Enter Lecturer Name',
+        courseCode: 'Enter Course Code'
         }
     },
 
@@ -21,9 +24,19 @@ const defaultTimetable = {
         }
     },
 
-    timetableRenderData: {
-        isPreviewOpen: false,
-        renderData: null
+    timetableRenderData: null,
+
+    settings: {
+        theme: 'default',
+
+        courseNameFontSize: 25, 
+        lecturerNameFontSize: 15,
+        courseCodeFontSize: 13,
+
+        gridWidth: 200,
+        gridHeight: 150,
+
+        noOfSessions: 11
     }
 }
 

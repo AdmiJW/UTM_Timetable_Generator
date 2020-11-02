@@ -1,6 +1,6 @@
 
 /* =================================================================================================================
-Basically takes in the virtual timetable (2D array timetable, each grid may contain a Course JSON Object),
+Basically takes in the virtual timetable (2D array timetable, each grid may or may not contain a Course JSON Object),
 flatten them into one single array of JSON object consisting of information of courses, such that
     >   Neighboring same courses are combined into one entity
     >   No more 2D array. Its 1D array consisting of objects which contains information

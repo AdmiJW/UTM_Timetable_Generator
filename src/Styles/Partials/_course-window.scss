@@ -1,0 +1,244 @@
+@import 'config';
+
+
+
+
+
+//================================
+// COURSE WINDOW
+//================================
+.course-window {
+    position: relative;
+    height: unquote(' calc( 100vh - var(--header-height) )' );
+
+    background-color: $course-bg;
+
+
+    &__div {
+        @include wrapperForScrolling( unquote(' calc( 100vh - var(--header-height) )' ), 'true' );
+        scroll-behavior: smooth;
+    }
+
+    &__add-button {
+        @extend %btn;
+
+        position: absolute;
+        bottom: 15px;
+        right: unquote(' max(3vw, 15px) ');
+
+        @include btn-rounded(50px, $btn-success-bg, 5rem);
+        @include btn-ripple-effect($btn-success-bg, 1s);
+    }
+
+    &__view-button {
+        @extend %btn;
+        
+        position: absolute;
+        bottom: 15px;
+        left: unquote(' max(3vw, 15px) ');
+
+        @include btn-rounded(50px, $btn-danger-bg, 3rem);
+        @include btn-ripple-effect($btn-danger-bg, 1s);
+
+        &:hover .fa-eye, &:focus .fa-eye {
+            animation: blink 1s ease forwards;
+        }
+    }
+}
+
+
+
+
+//================================
+// COURSE ITEM (Each Course Entry)
+//================================
+.course-item {
+    @include flex(column, flex-start, initial);
+    @include fadeInEffect;
+    position: relative;
+
+    width: 90%;
+    margin: 10px auto;
+
+    background-color: $course-item-bg;
+    border-radius: 15px;
+
+    &.fade-out {
+        @include fade-out;
+    }
+    
+
+
+
+    // The div containing Course Name, Lecturer Name, and Course Code
+    &__info {
+        @include flex(column, flex-start, inherit);
+
+        &__courseName {
+            @include font('roboto', 2.5rem, white, center, 'thin');
+            @include courseItemInfoStyling(15px, -5px, 15px, 15px, 'true' );
+        }
+        &__lecturerName {
+            @include font('roboto', 1.5rem, white, center, 'light');
+            @include courseItemInfoStyling(10px, 0px, 15px, 0px );
+        }
+        &__courseCode {
+            @include font('roboto', 1.2rem, white, center, 'bold');
+            @include courseItemInfoStyling(0px, 0px, 0px, 15px);
+        }
+
+        &__buttons {
+            @include flex(row, center, center);
+            padding-top: 10px;
+
+            &__delete-btn {
+                @extend %btn;
+                @include btn-rounded(40px, $btn-danger-bg, 2rem);
+                @include btn-ripple-effect($btn-danger-bg, 1s);
+                position: relative;
+            }
+
+            
+            &__add-button {
+                @extend %btn;
+                @include btn-rounded(40px, $btn-success-bg, 3rem);
+                @include btn-ripple-effect($btn-success-bg, 1s);
+                position: relative;
+            }
+
+            button + button {
+                margin-left: 20px;
+            }
+        }
+    }
+
+    &__seperator {
+        width: 95%;
+        height: 1px;
+        background-color: white;
+
+        border-radius: 1px;
+        margin: 10px auto;
+    }
+
+}
+
+
+
+
+//==========================================================
+// COURSE ITEM TIME DIV (Each Course Entry's Time Container)
+//==========================================================
+.course-item__times {
+    @include courseItemInfoStyling(5px, -5px, 5px, 5px );
+    position: relative;
+    margin-bottom: 5px;
+    overflow-x: hidden;
+
+    &__entry {
+        @include courseItemInfoStyling(5px, 0px, 5px, 5px);
+        @include flex(column, flex-start, flex-start);
+        @include fadeInEffect;
+        position: relative;
+
+        &.fade-out {
+            @include fade-out;
+        }
+
+
+        &__delete-button {
+            @extend %btn;
+            @include btn-rounded( var(--time-delete-button-size) , $btn-danger-bg, 1rem );
+            @include btn-ripple-effect ($btn-danger-bg, 1s);
+
+            position: absolute;
+            right: 5px;
+            top: 5px;
+        }
+
+        &__dayOfWeek {
+            @include selectHTML(1.5rem);
+            margin: 5px;
+            width: 85%;
+        }
+
+        &__session {
+            @include selectHTML(1rem);
+            width: 95%;
+            margin: auto;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+//=========================================================================
+//  MEDIA QUERIES
+//=========================================================================
+
+// When the width is over 500px, make the content window smaller by adding margin around it 
+@media screen and (min-width: 500px) {
+
+    .course-window {
+        margin: var(--large-screen-window-y-margin) 0;
+        @include largeScreenMargin();
+        border-radius: 20px;
+        max-width: 1000px;
+        height: unquote(' max( 300px, calc(100vh - var(--header-height) - 2 * var(--large-screen-window-y-margin) ) )' );
+
+        &__div {
+            height: unquote('max( 300px, calc(100vh - var(--header-height) - 2 * var(--large-screen-window-y-margin) ) )' );
+        }
+        
+    }
+}
+
+//  When the width is over 768px (Tablet), each of the courses entry will become a row, instead of a column
+@media screen and (min-width: 768px) {
+    .course-item {
+        @include flex(row, flex-start, stretch);
+
+        width: 95%;
+        margin: 10px auto;
+        padding: 10px;
+        
+
+        // The div containing Course Name, Lecturer Name, and Course Code
+        &__info {
+            width: 45%;
+        }
+
+        &__seperator {
+            display: none;
+        }
+    }
+
+
+    .course-item__times {
+        @include courseItemInfoStyling(5px, -5px, 5px, 5px );
+        position: relative;
+        margin-bottom: 5px;
+
+        &__entry {
+            @include flex(row, flex-start, flex-start);
+            padding: unquote(' calc( var(--time-delete-button-size) + 5px ) ') 5px 0px 5px;
+
+            &__dayOfWeek {
+                @include selectHTML(1.7rem);
+                width: 40%;
+            }
+
+            &__session {
+                @include selectHTML(1.5rem);
+                flex-grow: 1;
+            }
+        }
+    }
+
+}

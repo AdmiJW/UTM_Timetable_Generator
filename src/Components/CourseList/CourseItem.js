@@ -1,19 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-//  ContentEditable
+
+//  ContentEditable Library for ContentEditable HTML elements in React
 import ContentEditable from 'react-contenteditable';
 
-
-import CourseActions from '../Redux/Actions/CourseActions';
-import TimeActions from '../Redux/Actions/TimeActions';
+//  Action Creators
+import CourseActions from '../../Redux/Actions/CourseActions';
+import TimeActions from '../../Redux/Actions/TimeActions';
 
 //  Other React Components
 import CourseTimeItem from './CourseTimeItem.js';
 
 
 
-class CourseItem extends React.Component {
+class CourseItem extends React.PureComponent {
     constructor(props) {
         super(props);
 
@@ -32,6 +34,7 @@ class CourseItem extends React.Component {
     }
 
 
+    //  Allow it to animate the fade out first, only then we actually delete the course Item.
     deleteCourse() {
         this.courseItemHTML.classList.add('fade-out');
 
@@ -40,6 +43,8 @@ class CourseItem extends React.Component {
         }, 500);
     }
 
+
+    //  Either course Name, lecturer Name, or CourseCode is changed. Update the settings.
     changeCourseInfo() {
         this.props.changeCourseInfo(
             {
@@ -51,11 +56,14 @@ class CourseItem extends React.Component {
         );
     }
 
+
+    //  Add a new time slot into the current course item.
     addTime() {
         this.props.addTime( this.courseID );
     }
 
 
+    //  A function to map the courseTimes items (JSON object) into React Components of CourseTimeItem
     timeItemRenderer() {
         return Object.keys( this.props.courseTimes ).map( (timeIdx) => {
             if ( timeIdx !== 'nextTimeID')
@@ -110,6 +118,15 @@ class CourseItem extends React.Component {
 }
 
 
+/* =================================================
+    Proptypes, MapStateToProps, MapDispatchToProps
+==================================================== */
+CourseItem.propTypes = {
+    deleteCourse: PropTypes.func.isRequired,
+    changeCourseInfo: PropTypes.func.isRequired,
+    addTime: PropTypes.func.isRequired
+}
+
 
 function mapDispatchToProps(dispatch) {
     return {
@@ -118,11 +135,6 @@ function mapDispatchToProps(dispatch) {
         addTime: ( courseIndexToAdd ) => dispatch( TimeActions.addTime( courseIndexToAdd ) )
     }
 }
-
-
-
-
-
 
 
 export default connect(null, mapDispatchToProps)(CourseItem);

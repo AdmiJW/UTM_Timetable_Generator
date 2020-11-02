@@ -1,0 +1,161 @@
+
+@import 'config';
+
+//============================================
+// HEADER 
+//============================================
+.header {
+    @include flex(row, space-between, center);
+
+    @include largeScreenPadding();
+
+    padding: 15px;
+    height: var(--header-height);
+
+    background-color: $header-bg;
+    box-shadow: 0px 5px 15px .5px rgba(0,0,0,1);
+
+    &__logo {
+        max-height: 75px;
+        width: auto;
+    }
+
+    &__title {
+        @include font('roboto', 3rem, white, center, 'bold');
+    }
+
+    &__setting {
+        @extend %btn;
+        box-shadow: 0px 5px 0px 0px darken(#8b261b, 10%) !important;
+        padding: 5px;
+        border-radius: 10px;
+        background-color: #8b261b !important;
+        
+
+        &__cog1 {
+            font-size: 4rem;
+            color: white;
+        }
+
+        &__cog2 {
+            font-size: 2.5rem;
+            color: white;
+        }
+        &:hover, &:focus {
+            transform: translateY(5px);
+            box-shadow: none !important;
+        }
+
+        &:hover &__cog1, &:focus &__cog1 {
+            @include spinning;
+        }
+        &:hover &__cog2, &:focus &__cog2 {
+            @include spinning('reverse');
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+//================================
+// FOOTER
+//================================
+.footer {
+    @include flex(column, center, center);
+
+    @include largeScreenPadding();
+
+    min-height: 200px;
+    background-color: $footer-bg;
+    padding: 20px 0px;
+
+    &__support {
+        width: 135px;
+        padding: 15px;
+        background-color: white;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 20px;
+        box-shadow: 0px 10px 0px 0px rgba(255, 255, 255, 0.76);
+
+        transition: transform .5s ease;
+
+        &__text {
+            @include font('roboto', 2rem, black, center, 'bold');
+            position: relative;
+            margin: 10px 0px;
+            transition: color .5s ease;
+
+            &::before, &::after {
+                opacity: 0;
+                transition: all .5s ease;
+                position: absolute;
+                color: orange;
+            }
+
+            &::before {
+                content: '<';
+                transform: translateX(-50%);
+                top: 0; left: 0;
+            }
+            &::after {
+                content: '/>';
+                top: 0; right: -5px;
+                transform: translateX(50%);
+            }
+        }
+
+        &:hover, &:focus {
+            transform: translateY(-5px);
+            .footer__support__text {
+                color: orange;
+                &::before, &::after {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+        }
+
+        &__logo {
+            width: 80%;
+            height: auto;
+        }
+    }
+
+    &__desc {
+        padding: 20px;
+        @include font('roboto', 2rem, white, center, 'thin');
+    }
+}
+
+
+
+
+
+//=========================================================================
+//  MEDIA QUERIES
+//=========================================================================
+
+@media screen and (max-width: 550px) {
+    .header {
+        &__logo {
+            max-height: 50px;
+            width: auto;
+        }
+    
+        &__setting {
+            transform: scale(0.8);
+            &:hover, &:focus {
+                transform: scale(0.8) translateY(5px);
+            }
+        }
+    }
+}

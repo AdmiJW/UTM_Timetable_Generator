@@ -1,0 +1,332 @@
+:root {
+  --header-height: 110px;
+  --time-delete-button-size: 20px;
+  --large-screen-window-y-margin: 20px;
+}
+
+/* =======================================================================================
+    Mixin function largeScreenPadding()
+    When the screen is very wide, add the corresponding padding so that the contents are
+    limited to 1000px.
+    The reason to not use max-width is because background color will not be applied
+======================================================================================= */
+/* =======================================================================================
+    Mixin function largeScreenMargin()
+    When the screen is very wide, add the corresponding margin so that the contents are
+    limited to 1000px.
+    The reason to not use max-width is because it won't center your content automatically
+======================================================================================= */
+/* =======================================================================================
+    Mixin function flex( direction, justify, align )
+    A mixin which will apply display flex, flex-direction, justify-content, align-items in
+    just 1 line
+======================================================================================= */
+/* =======================================================================================
+    Mixin function font( font, size, color, align, bold )
+    A mixin which will apply font family, size, color, text-align and bold in just 1 line
+======================================================================================= */
+/* =======================================================================================
+    Classes for the CourseItems, so that they will have different colors for each course
+    The color is determined in the Javascript, the classes only apply the color themes
+    correctly
+======================================================================================= */
+.course-item--0-theme {
+  background-color: #3498db !important;
+}
+
+.course-item--1-theme {
+  background-color: #6ab04c !important;
+}
+
+.course-item--2-theme {
+  background-color: #e74c3c !important;
+}
+
+.course-item--3-theme {
+  background-color: #9b59b6 !important;
+}
+
+.course-item--4-theme {
+  background-color: #34495e !important;
+}
+
+.course-item--5-theme {
+  background-color: #f1c40f !important;
+}
+
+.course-item--6-theme {
+  background-color: #3a40b6 !important;
+}
+
+.course-item--7-theme {
+  background-color: #2ecc71 !important;
+}
+
+.course-item--8-theme {
+  background-color: #e67e22 !important;
+}
+
+.course-item--9-theme {
+  background-color: #686de0 !important;
+}
+
+/* =======================================================================================
+    Base class for buttons. Remove the default button styles.
+======================================================================================= */
+.timetable__previewer__closebtn, .timetable__previewer__downloadbtn {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+  -webkit-box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.1);
+          box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+/* =======================================================================================
+    Mixin function btn-primary( size, font-size)
+    Apply the style of a circular button with blue-ish background and white text
+======================================================================================= */
+/* =======================================================================================
+    Mixin function btn-ripple-effect( duration )
+    Apply the background ripple effect when button is hovered or focused
+======================================================================================= */
+/* =======================================================================================
+    The blinking effect for the eye on the preview button
+======================================================================================= */
+@-webkit-keyframes blink {
+  0%, 50%, 100% {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+  25%, 75% {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+  }
+}
+@keyframes blink {
+  0%, 50%, 100% {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+  25%, 75% {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+  }
+}
+
+/* =======================================================================================
+    Base class for select elements. Give it a more modern style
+======================================================================================= */
+/* =======================================================================================
+    Mixin function courseItemInfoStyling( marginTop, shadowOffset)
+    Make the course item info text fields (Course name, lecturer name, course code)...
+    style nice, like a bewel inside. Mainly achieved using transparent-ish black background
+    and box shadow
+======================================================================================= */
+/* =======================================================================================
+    Mixin function wrapperForScrolling( maxHeight, height )
+    This mixin style is applied for the div that is wrapper. The idea comes because
+    if the HTML is like this:
+    <div>
+        <button (absolute >
+        <list item 1>
+        <list item 2>
+    </div>
+    When the div scrolls, the button which is positioned absolutely, will also scroll.
+======================================================================================= */
+/* =======================================================================================
+    Fadein effect mixin
+    This mixin when applied, will cause element to fade in from the left when first rendered.
+======================================================================================= */
+@-webkit-keyframes fade-in {
+  from {
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes fade-in {
+  from {
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* =======================================================================================
+    Fadeout effect mixin
+    This is a class which when applied, will apply the transition to fade out to the left
+======================================================================================= */
+.fade-out {
+  -webkit-animation: fade-out 1s cubic-bezier(0, 0, 0, 1) forwards !important;
+          animation: fade-out 1s cubic-bezier(0, 0, 0, 1) forwards !important;
+}
+
+@-webkit-keyframes fade-out {
+  from {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+    opacity: 0;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+    opacity: 0;
+  }
+}
+
+/* =======================================================================================
+    Scrollbar custom styled
+======================================================================================= */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  width: 10%;
+  -webkit-box-shadow: inset 0 0 6px black;
+}
+
+.timetable.hidden {
+  display: none;
+}
+
+.timetable__bgblocker {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 998;
+  -webkit-transition: opacity 1s ease;
+  transition: opacity 1s ease;
+  opacity: 1;
+}
+
+.transitionOut .timetable__bgblocker {
+  opacity: 0;
+}
+
+.timetable__previewer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: calc(100vw - 40px);
+  max-width: 1000px;
+  height: 94vh;
+  margin: 3vh 3vw;
+  margin-left:  max( 20px, calc( (100vw - 1000px) / 2) )  !important;
+  margin-right:  max( 20px, calc( (100vw - 1000px) / 2 ) )  !important;
+  -webkit-animation: fade-in 1s cubic-bezier(0, 0, 0, 1) forwards;
+          animation: fade-in 1s cubic-bezier(0, 0, 0, 1) forwards;
+  z-index: 999;
+  background-color: #ecf0f1;
+  overflow-x: auto;
+  border-radius: 20px;
+}
+
+.timetable__previewer__closebtn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 100;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  font-family: 'Roboto', sans-serif;
+  font-size: 3rem;
+  color: red;
+  text-align: center;
+  font-weight: 400;
+  font-weight: "regular";
+}
+
+.timetable__previewer__downloadbtn {
+  border: solid 2px orange;
+  border-radius: 20px;
+  padding: 10px;
+  margin: 5px;
+  color: orange;
+}
+
+.timetable__previewer__wrapper {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-y: hidden;
+  height: 85%;
+}
+
+.timetable__previewer .konvajs-content {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.timetable__previewer .konvajs-content canvas {
+  height: 100% !important;
+  width: initial !important;
+  margin: auto !important;
+}
+
+.transitionOut .timetable__previewer {
+  -webkit-animation: fade-out 1s cubic-bezier(0, 0, 0, 1) forwards !important;
+          animation: fade-out 1s cubic-bezier(0, 0, 0, 1) forwards !important;
+}
+/*# sourceMappingURL=previewer.css.map */

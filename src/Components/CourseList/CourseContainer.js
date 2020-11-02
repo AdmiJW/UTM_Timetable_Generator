@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 //  Redux Action Creators
-import CourseActions from '../Redux/Actions/CourseActions';
-import TimetableActions from '../Redux/Actions/TimetableActions';
+import CourseActions from '../../Redux/Actions/CourseActions';
+import TimetableActions from '../../Redux/Actions/TimetableActions';
 
 // Other React Components
 import CourseItem from './CourseItem.js';
@@ -15,7 +16,6 @@ class CourseContainer extends React.Component {
 
         this.addCourse = this.addCourse.bind(this);
         this.courseItemRenderer = this.courseItemRenderer.bind(this);
-        this.viewButtonHandler = this.viewButtonHandler.bind(this);
     }
 
 
@@ -28,13 +28,14 @@ class CourseContainer extends React.Component {
     addCourse() {
         this.props.addCourse();
 
-        //  Only scroll to bottom after element is inserted, which takes a little bit of time
+        //  Animate Scroll to bottom after element is inserted, which takes a little bit of time
         setTimeout(() => {
             this.courseContainer.scrollTop = this.courseContainer.scrollHeight;
         }, 50);
     }
 
-    //  Converts the array of courses into the JSX respective.
+
+    //  Converts the array of courses into arrays of CourseItem Component respectively.
     courseItemRenderer() {
         const { courseItems, courseTimeItems } = this.props;
 
@@ -43,10 +44,6 @@ class CourseContainer extends React.Component {
                 courseTimes={courseTimeItems[courseID] } /> );
         });
         return courseHTML;
-    }
-
-    viewButtonHandler() {
-        this.props.viewTimetable();
     }
 
 
@@ -67,7 +64,7 @@ class CourseContainer extends React.Component {
                 </button>
 
                 <button type='button' className='course-window__view-button' id='course-window__view-button'
-                    onClick={ this.viewButtonHandler } >
+                    onClick={ this.props.viewTimetable } >
                     <i className="far fa-eye"></i>
                 </button>
             </main>
@@ -78,6 +75,17 @@ class CourseContainer extends React.Component {
 
 
 
+
+/* =================================================
+    Proptypes, MapStateToProps, MapDispatchToProps
+==================================================== */
+CourseContainer.propTypes = {
+    courseItems: PropTypes.object.isRequired,
+    courseTimeItems: PropTypes.object.isRequired,
+
+    addCourse: PropTypes.func.isRequired,
+    viewTimetable: PropTypes.func.isRequired
+}
 
 
 function mapStateToProps(store) {

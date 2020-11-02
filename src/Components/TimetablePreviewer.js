@@ -1,13 +1,14 @@
 import React from 'react';
-
-//  Redux Utilities
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+//  Action Creators
 import TimetableActions from '../Redux/Actions/TimetableActions';
 
 //  Timetable Drawing Functions
 import TimetableBaseDrawer from '../LogicUtils/TimetableBaseDrawer';
 import TimetableSlotDrawer from '../LogicUtils/TimetableSlotDrawer';
+import { timetableConfigDeriver } from '../LogicUtils/TimetableConfigDeriver';
 
 
 
@@ -23,14 +24,18 @@ class TimetablePreviewer extends React.Component {
         this.downloadBtnHandler = this.downloadBtnHandler.bind(this);
     }
 
-    componentDidMount() {
-        this.canvasStage = TimetableBaseDrawer( this.timetableCanvasWindow.current );
-    }
-
+    
+    //  If the preview window is open, then we'll update the timetable by redrawing it again
     componentDidUpdate() {
-        TimetableSlotDrawer( this.canvasStage, this.props.timetableRenderData );
+        if (this.props.isPreviewOpen) {
+            const derivedConfig = new timetableConfigDeriver( this.props.settings );
+
+            this.canvasStage = TimetableBaseDrawer( this.timetableCanvasWindow.current, derivedConfig );
+            TimetableSlotDrawer( this.canvasStage, this.props.timetableRenderData, derivedConfig );
+        }
     }
 
+    //  Allows for animation to take place first, then only close it
     closePreviewBtnHandler() {
         this.timetableHTML.current.classList.add('transitionOut');
 
@@ -40,6 +45,8 @@ class TimetablePreviewer extends React.Component {
         }, 800);
     }
 
+
+    //  Convert the Canvas to DataURL, load URL into a created anchor tag, and simulate click to download png
     downloadBtnHandler() {
         const tempLink = document.createElement('a');
         tempLink.download = 'timetable';
@@ -50,16 +57,14 @@ class TimetablePreviewer extends React.Component {
 
     
     render() {
-        const {isPreviewOpen} = this.props.timetableRenderData;
+        const { isPreviewOpen } = this.props;
         //=================================== JSX ==========================================
         return (
             <div className={`timetable ${isPreviewOpen? '':'hidden' }`} ref={ this.timetableHTML } >
-                <div className='timetable__bgblocker' >
-                </div>
 
                 <div className='timetable__previewer' id='timetable__previewer'>
                     <button type='button' className='timetable__previewer__closebtn' id='timetable__previewer__closebtn'
-                        onClick={this.closePreviewBtnHandler} >
+                        onClick={ this.closePreviewBtnHandler } >
                         <i className="fas fa-times"></i>
                     </button>
 
@@ -72,7 +77,6 @@ class TimetablePreviewer extends React.Component {
                         Download as png
                     </button>
 
-
                 </div>
             </div>
         );
@@ -81,9 +85,26 @@ class TimetablePreviewer extends React.Component {
     
 }
 
+
+
+
+
+/* =================================================
+    Proptypes, MapStateToProps, MapDispatchToProps
+==================================================== */
+TimetablePreviewer.propTypes = {
+    isPreviewOpen: PropTypes.bool.isRequired,
+    timetableRenderData: PropTypes.array,
+    settings: PropTypes.object.isRequired,
+
+    closePreview: PropTypes.func.isRequired
+}
+
 function mapStateToProps( store ) {
     return {
-        timetableRenderData: store.timetableRenderData
+        isPreviewOpen: store.isPreviewOpen,
+        timetableRenderData: store.timetableRenderData,
+        settings: store.settings
     };
 }
 

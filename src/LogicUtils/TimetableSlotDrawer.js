@@ -1,40 +1,14 @@
 
-import TimetableConfig from './TimetableConfig';
-
-import konva from 'konva';
 import KonvaFactory from './KonvaFactory';
 
-//  Timetable settings
-const { 
-    timetableWidth,
-    timetableHeight,
-    margin, 
-
-    dayOfWeeks,
-    times,
-    sessions,
-    
-    theme,
-    courseNameFontSize,
-    lecturerNameFontSize,
-    courseCodeFontSize,
-
-    gridWidth, 
-    gridHeight, 
-    actualWidth, 
-    actualHeight, 
-    row1GridHeight, 
-    row1ActualHeight,
-    
-    labelBG,
-    sideColorBG,
-    oddRowBG,
-    evenRowBG,
-    colorMaps
-} = TimetableConfig;
 
 const { rectFactory, textFactory } = KonvaFactory;
 
+
+/* =================================================================================================================
+    This function is called every time after the TimetableBaseDrawer.js is called. This renders the courses
+    onto the timetable.
+=================================================================================================================*/
 
 /*
     Structure of each individual renderData:
@@ -50,22 +24,28 @@ const { rectFactory, textFactory } = KonvaFactory;
         endingSession:          ( [0 - 11] )
     }
 */
-function TimetableSlotDrawer( canvas , renderData) {
+function TimetableSlotDrawer( canvas , renderData, derivedConfig) {
 
-    //  Remove the previously drawn timetable courses
-    if (canvas.getLayers()[1] ) {
-        canvas.getLayers()[1].destroy();
-    }
+    //  Destructuring of the properties required to draw Timetable courses
+    const {
+        gridWidth, gridHeight, margin,
+        themeSettings,
+        courseNameFontSize, lecturerNameFontSize ,courseCodeFontSize,
+        actualWidth, actualHeight
+    } = derivedConfig;
 
-    const layer = new konva.Layer({
-        width: timetableWidth,
-        height: timetableHeight
-    });
+    const {
+        courseFontColor, fontFamily, colorMaps
+    } = themeSettings;
+
+
+    //  The first child is the layer to draw on
+    const layer = canvas.getLayers()[1];
 
     const rects = [];
     const texts = [];
 
-    renderData.renderData.forEach( course => {
+    renderData.forEach( course => {
         const { dayOfWeek, startingSession, endingSession } = course;
         const { courseName, lecturerName, courseCode, courseID } = course.courseObj;
 
@@ -75,7 +55,7 @@ function TimetableSlotDrawer( canvas , renderData) {
 
         const xPosition = gridWidth + startingSession * gridWidth + margin;
         const yPosition = gridHeight + dayOfWeek * gridHeight + margin;
-        const width = (actualWidth + margin) * (endingSession - startingSession + 1);
+        const width = (endingSession - startingSession + 1) * (actualWidth + (2 * margin) ) - 2 * margin;
 
 
         rects.push( rectFactory(
@@ -83,7 +63,7 @@ function TimetableSlotDrawer( canvas , renderData) {
             yPosition,
             width,
             actualHeight,
-            colorMaps[courseID]
+            colorMaps[courseID % colorMaps.length]
         ) );
 
         if (!isCourseNameEmpty)
@@ -94,7 +74,8 @@ function TimetableSlotDrawer( canvas , renderData) {
                 width,
                 actualHeight * heightDeterminer.courseName.heightScale( isLectNameEmpty, isCourseCodeEmpty ),
                 courseNameFontSize,
-                'Roboto',
+                courseFontColor,
+                fontFamily,
                 'normal',
                 3
             ) );
@@ -107,7 +88,8 @@ function TimetableSlotDrawer( canvas , renderData) {
                 width,
                 actualHeight * heightDeterminer.lectName.heightScale( isCourseNameEmpty, isCourseCodeEmpty ),
                 lecturerNameFontSize,
-                'Roboto',
+                courseFontColor,
+                fontFamily,
                 'normal',
                 3
             ) );
@@ -120,7 +102,8 @@ function TimetableSlotDrawer( canvas , renderData) {
                 width,
                 actualHeight * heightDeterminer.courseCode.heightScale( isCourseNameEmpty, isLectNameEmpty ),
                 courseCodeFontSize,
-                'Roboto',
+                courseFontColor,
+                fontFamily,
                 'bold',
                 3
             ) );
@@ -132,7 +115,12 @@ function TimetableSlotDrawer( canvas , renderData) {
     canvas.add(layer);
 }
 
-//  Give corresponding height for texts depending if some fields are empty
+
+
+
+
+//  Function that give corresponding height for texts depending if some fields are empty
+//  Eg: When the lecturerName and courseCode is empty, the courseName will span over entire grid
 const heightDeterminer = {
     courseName: {
         heightScale: function( isLectNameEmpty, isCourseCodeEmpty) {
