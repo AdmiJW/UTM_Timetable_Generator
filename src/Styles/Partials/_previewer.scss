@@ -35,6 +35,19 @@
         overflow-x: auto;
     
         border-radius: 20px;
+
+        &__btnDiv {
+            @include flex(row, center, center);
+
+            a {
+                @extend %btn;
+                @include font('roboto', 1.5rem, #e67e22, center, 'regular');
+                border: solid 2px #e67e22 !important;
+                border-radius: 20px;
+                padding: 10px;
+                margin: 5px;
+            }
+        }
     
         &__closebtn {
             position: absolute;
@@ -45,15 +58,6 @@
             @extend %btn;
             box-shadow: none;
             @include font('roboto', 3rem, red, center, 'regular');
-        }
-
-        &__downloadbtn {
-            @extend %btn;
-            @include font('roboto', 1.5rem, #e67e22, center, 'regular');
-            border: solid 2px #e67e22 !important;
-            border-radius: 20px;
-            padding: 10px;
-            margin: 5px;
         }
 
         &__wrapper {

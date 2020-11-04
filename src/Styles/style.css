@@ -67,7 +67,7 @@
 /* =======================================================================================
     Base class for buttons. Remove the default button styles.
 ======================================================================================= */
-.header__setting, .timetable__previewer__closebtn, .timetable__previewer__downloadbtn, .course-window__add-button, .course-window__view-button, .course-item__info__buttons__delete-btn, .course-item__info__buttons__add-button, .course-item__times__entry__delete-button, .settings__closebtn {
+.header__setting, .timetable__previewer__btnDiv a, .timetable__previewer__closebtn, .course-window__add-button, .course-window__view-button, .course-item__info__buttons__delete-btn, .course-item__info__buttons__add-button, .course-item__times__entry__delete-button, .settings__closebtn {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
@@ -294,7 +294,7 @@
 /* =======================================================================================
     Base class for buttons. Remove the default button styles.
 ======================================================================================= */
-.header__setting, .timetable__previewer__closebtn, .timetable__previewer__downloadbtn, .course-window__add-button, .course-window__view-button, .course-item__info__buttons__delete-btn, .course-item__info__buttons__add-button, .course-item__times__entry__delete-button, .settings__closebtn {
+.header__setting, .timetable__previewer__btnDiv a, .timetable__previewer__closebtn, .course-window__add-button, .course-window__view-button, .course-item__info__buttons__delete-btn, .course-item__info__buttons__add-button, .course-item__times__entry__delete-button, .settings__closebtn {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
@@ -668,7 +668,7 @@
 /* =======================================================================================
     Base class for buttons. Remove the default button styles.
 ======================================================================================= */
-.header__setting, .timetable__previewer__closebtn, .timetable__previewer__downloadbtn, .course-window__add-button, .course-window__view-button, .course-item__info__buttons__delete-btn, .course-item__info__buttons__add-button, .course-item__times__entry__delete-button, .settings__closebtn {
+.header__setting, .timetable__previewer__btnDiv a, .timetable__previewer__closebtn, .course-window__add-button, .course-window__view-button, .course-item__info__buttons__delete-btn, .course-item__info__buttons__add-button, .course-item__times__entry__delete-button, .settings__closebtn {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
@@ -822,6 +822,35 @@
   border-radius: 20px;
 }
 
+.timetable__previewer__btnDiv {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.timetable__previewer__btnDiv a {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.5rem;
+  color: #e67e22;
+  text-align: center;
+  font-weight: 400;
+  font-weight: "regular";
+  border: solid 2px #e67e22 !important;
+  border-radius: 20px;
+  padding: 10px;
+  margin: 5px;
+}
+
 .timetable__previewer__closebtn {
   position: absolute;
   top: 10px;
@@ -835,19 +864,6 @@
   text-align: center;
   font-weight: 400;
   font-weight: "regular";
-}
-
-.timetable__previewer__downloadbtn {
-  font-family: 'Roboto', sans-serif;
-  font-size: 1.5rem;
-  color: #e67e22;
-  text-align: center;
-  font-weight: 400;
-  font-weight: "regular";
-  border: solid 2px #e67e22 !important;
-  border-radius: 20px;
-  padding: 10px;
-  margin: 5px;
 }
 
 .timetable__previewer__wrapper {
@@ -945,7 +961,7 @@
 /* =======================================================================================
     Base class for buttons. Remove the default button styles.
 ======================================================================================= */
-.header__setting, .timetable__previewer__closebtn, .timetable__previewer__downloadbtn, .course-window__add-button, .course-window__view-button, .course-item__info__buttons__delete-btn, .course-item__info__buttons__add-button, .course-item__times__entry__delete-button, .settings__closebtn {
+.header__setting, .timetable__previewer__btnDiv a, .timetable__previewer__closebtn, .course-window__add-button, .course-window__view-button, .course-item__info__buttons__delete-btn, .course-item__info__buttons__add-button, .course-item__times__entry__delete-button, .settings__closebtn {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
@@ -1672,7 +1688,7 @@
 /* =======================================================================================
     Base class for buttons. Remove the default button styles.
 ======================================================================================= */
-.header__setting, .timetable__previewer__closebtn, .timetable__previewer__downloadbtn, .course-window__add-button, .course-window__view-button, .course-item__info__buttons__delete-btn, .course-item__info__buttons__add-button, .course-item__times__entry__delete-button, .settings__closebtn {
+.header__setting, .timetable__previewer__btnDiv a, .timetable__previewer__closebtn, .course-window__add-button, .course-window__view-button, .course-item__info__buttons__delete-btn, .course-item__info__buttons__add-button, .course-item__times__entry__delete-button, .settings__closebtn {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
