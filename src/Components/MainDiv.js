@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 // Other React Components
 import CourseContainer from './CourseList/CourseContainer.js'
 import TimetablePreviewer from './TimetablePreviewer';
-import TimetableSettings from './TimetableSettings';
+import TimetableSettings from './TimetableSettings/TimetableSettings';
 import Blocker from './Blocker';
 
 //  Redux ActionCreators
@@ -38,7 +38,7 @@ class MainDiv extends React.Component {
                 <TimetableSettings />
 
                 <footer className='footer' id='footer'>
-                    <a href='https://github.com/AdmiJW/UTM_Timetable_Generator/issues' target='_blank'
+                    <a href='https://github.com/AdmiJW/UTM_Timetable_Generator/issues' target='_blank' rel='noopener noreferrer'
                         className='footer__support' id='footer__support'>
                         <h3 className='footer__support__text'>Support</h3>
                         <img className='footer__support__logo' src='https://icons-for-free.com/iconfiles/png/512/github+hub+icon+icon-1320194641335079152.png'

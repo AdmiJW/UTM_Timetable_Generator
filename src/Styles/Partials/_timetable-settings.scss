@@ -60,15 +60,44 @@
 
     &__category {
         padding: 5px;
-        margin: 10px 0px;
+        margin: 15px 0px;
         background-color: rgb(228, 228, 228);
         border-radius: 10px;
         box-shadow: 0px -5px 0px 0px darken(white, 20%);
         width: unquote(' max(70%, 250px) ');
 
         &__title {
-            @include font('roboto', 2.5rem, rgb(153, 153, 153), center, 'bold');
+            @include font('roboto', 2.5rem, rgb(87, 87, 87), center, 'bold');
             z-index: 1;
+        }
+    }
+
+    &__savedel {
+        &__wrapper {
+            @include flex(row, center, center);
+        }
+        &__btn {
+            @extend %btn;
+            margin: 5px;
+            @include font('roboto', 3.5rem, white, center, 'regular');
+            padding: 10px;
+            border-radius: 10px;
+            &:hover, &:focus {
+                transform: translateY(5px);
+                box-shadow: none !important;
+            }
+        }
+        &__btn:first-child {
+            box-shadow: 0px 5px 0px 0px darken($btn-primary-bg, 10%);
+            background-color: $btn-primary-bg !important;
+        }
+        &__btn:nth-child(2) {
+            box-shadow: 0px 5px 0px 0px darken($btn-success-bg, 10%);
+            background-color: $btn-success-bg !important;
+        }
+        &__btn:nth-child(3) {
+            box-shadow: 0px 5px 0px 0px darken($btn-danger-bg, 10%);
+            background-color: $btn-danger-bg !important;
         }
     }
 

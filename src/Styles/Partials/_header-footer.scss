@@ -35,22 +35,17 @@
         &__cog1 {
             font-size: 4rem;
             color: white;
+            @include spinning;
         }
 
         &__cog2 {
             font-size: 2.5rem;
             color: white;
+            @include spinning('reverse');
         }
         &:hover, &:focus {
             transform: translateY(5px);
             box-shadow: none !important;
-        }
-
-        &:hover &__cog1, &:focus &__cog1 {
-            @include spinning;
-        }
-        &:hover &__cog2, &:focus &__cog2 {
-            @include spinning('reverse');
         }
     }
 }

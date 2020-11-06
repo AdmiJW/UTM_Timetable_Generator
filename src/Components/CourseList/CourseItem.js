@@ -67,7 +67,8 @@ class CourseItem extends React.PureComponent {
     timeItemRenderer() {
         return Object.keys( this.props.courseTimes ).map( (timeIdx) => {
             if ( timeIdx !== 'nextTimeID')
-                return ( <CourseTimeItem key={timeIdx} courseID={this.courseID} timeInfo={ this.props.courseTimes[timeIdx] } /> )
+                return ( <CourseTimeItem key={timeIdx} courseID={this.courseID} timeInfo={ this.props.courseTimes[timeIdx] } /> );
+            return null;
         });
     }
 

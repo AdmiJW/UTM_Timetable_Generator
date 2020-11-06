@@ -60,6 +60,7 @@ class TimetablePreviewer extends React.Component {
     //  for them). Then on the new tab write the image data into it.
     openTabBtnHandler() {
         const w = window.open();
+        w.opener = null;
         const img = new Image();
         img.src = this.canvasStage.toDataURL();
         img.onload = () => {
@@ -91,15 +92,15 @@ class TimetablePreviewer extends React.Component {
                     </div>
 
                     <div className='timetable__previewer__btnDiv' id='timetable__previewer__btnDiv'>
-                        <a type='button' className='timetable__previewer__downloadbtn' id='timetable__previewer__downloadbtn'
+                        <button type='button' className='timetable__previewer__downloadbtn' id='timetable__previewer__downloadbtn'
                             onClick={this.downloadBtnHandler} >
                             Download as png
-                        </a>
+                        </button>
 
-                        <a type='button' className='timetable__previewer__openTab' id='timetable__previewer__openTab'
+                        <button type='button' className='timetable__previewer__openTab' id='timetable__previewer__openTab'
                             onClick={this.openTabBtnHandler} >
                             Open in new tab
-                        </a>
+                        </button>
                     </div>
 
                 </div>

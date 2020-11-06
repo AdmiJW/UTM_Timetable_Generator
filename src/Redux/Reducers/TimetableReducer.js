@@ -6,10 +6,7 @@ import clashChecker from '../../LogicUtils/ClashChecker';
 import timeFlattener from '../../LogicUtils/TimeFlattener';
 
 //  Testcases
-// import timetable1 from '../../Testcases/timetable1';
-// import emptyTimetable from '../../Testcases/emptyTimetable';
 import defaultTimetable from '../../Testcases/defaultTimetable';
-
 
 
 
@@ -18,6 +15,22 @@ import defaultTimetable from '../../Testcases/defaultTimetable';
 //  Initial State
 //==============================
 const initialState = defaultTimetable;
+
+//  Try to load the state from the local storage when the application first starts up
+{
+    const nextCourseID = window.localStorage.getItem('nextCourseID');
+    const courseItems = JSON.parse( window.localStorage.getItem('courseItems') );
+    const courseTimeItems = JSON.parse( window.localStorage.getItem('courseTimeItems') );
+    const settings = JSON.parse( window.localStorage.getItem('settings') );
+
+    if (nextCourseID && courseItems && courseTimeItems && settings) {
+        console.log("YES");
+        initialState.nextCourseID = nextCourseID;
+        initialState.courseItems = courseItems;
+        initialState.courseTimeItems = courseTimeItems;
+        initialState.settings = settings;
+    }
+}
 
 
 
@@ -163,8 +176,52 @@ function timetableReducer(state = initialState, action ) {
                 case 'gridHeight':
                     settings.gridHeight = Math.min( 400, Math.max(eventTarget.value, 0) );
                     break;
+                default:
+                    return state;
             }
             return Object.assign({}, state, { settings });
+        }
+
+        case ActionTypes.SAVE_SETTING: {
+            try {
+                window.localStorage.setItem("nextCourseID", state.nextCourseID);
+                window.localStorage.setItem("courseItems", JSON.stringify(state.courseItems) );
+                window.localStorage.setItem("courseTimeItems", JSON.stringify(state.courseTimeItems) );
+                window.localStorage.setItem("settings", JSON.stringify(state.settings) );
+                
+                window.alert("Course Informations and Settings Saved To Local Storage!");
+            } catch {
+                window.alert("Unable to save to local Storage");
+            }
+            return state;
+        }
+
+        case ActionTypes.LOAD_SETTING: {
+            try {
+                const nextCourseID = window.localStorage.getItem('nextCourseID');
+                const courseItems = JSON.parse( window.localStorage.getItem('courseItems') );
+                const courseTimeItems = JSON.parse( window.localStorage.getItem("courseTimeItems") );
+                const settings = JSON.parse( window.localStorage.getItem("settings") );
+
+                if (!nextCourseID || !courseItems || !courseTimeItems || !settings ) throw Error;
+
+                window.alert("Successfully loaded saved state from local storage");
+                
+                return Object.assign({}, state, { nextCourseID, courseItems, courseTimeItems, settings} );
+            } catch {
+                window.alert("Unable to load from local Storage");
+            }
+            return state;
+        }
+
+        case ActionTypes.DEL_SETTING: {
+            window.localStorage.removeItem('nextCourseID');
+            window.localStorage.removeItem('courseItems');
+            window.localStorage.removeItem('courseTimeItems');
+            window.localStorage.removeItem('settings');
+
+            window.alert('Successfully cleared saved state from local storage!');
+            return state;
         }
 
         default:

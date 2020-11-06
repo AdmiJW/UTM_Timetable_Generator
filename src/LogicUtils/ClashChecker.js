@@ -32,12 +32,12 @@ export default function clashChecker(courseItems, courseTimeItems) {
 
             //  Clash occurred
             if ( slot !== undefined ) {
-                throw 'Clashing Timetable Detected!\nThe course:\n\n' +
+                throw new Error('Clashing Timetable Detected!\nThe course:\n\n' +
                 `${slot.courseName}, ${slot.lecturerName}, ${slot.courseCode}\n\n` +
                 'Clashes with:\n\n' +
                 `${courseObject.courseName}, ${courseObject.lecturerName}, ${courseObject.courseCode}\n\n` +
                 'At timeslot:\n' +
-                `   ${dayOfWeekIndexConverter(row, true)}, ${sessionIndexConverter(col, true)}`;
+                `   ${dayOfWeekIndexConverter(row, true)}, ${sessionIndexConverter(col, true)}`);
             }
 
             virtualTimetable[row][col] = courseObject;

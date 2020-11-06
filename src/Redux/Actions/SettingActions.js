@@ -21,6 +21,24 @@ const SettingActions = {
                 settingEvent
             }
         };
+    },
+
+    saveSetting: function() {
+        return {
+            type: ActionTypes.SAVE_SETTING
+        }
+    },
+
+    loadSetting: function() {
+        return {
+            type: ActionTypes.LOAD_SETTING
+        }
+    },
+
+    delSetting: function() {
+        return {
+            type: ActionTypes.DEL_SETTING
+        }
     }
 
 };

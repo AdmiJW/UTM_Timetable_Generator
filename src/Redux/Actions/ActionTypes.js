@@ -14,6 +14,11 @@ const ActionTypes = {
     OPEN_SETTING: 'OPEN_SETTING',               //  Opens the settings window
     CLOSE_SETTING: 'CLOSE_SETTING',             //  Closes the settings window
     CHANGE_SETTING: 'CHANGE_SETTING',           //  Change the settings
+
+    SAVE_SETTING: 'SAVE_SETTING',               //  Saves everything: Courses, Times, Settings
+    LOAD_SETTING: 'LOAD_SETTING',               //  Load the saved courses times and settings from Local Storage
+    DEL_SETTING: 'DEL_SETTING',                 //  Delete the saved courses times and settings from Local Storage
+    
 }
 
 export default ActionTypes;

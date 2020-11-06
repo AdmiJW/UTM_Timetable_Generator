@@ -39,7 +39,7 @@
         &__btnDiv {
             @include flex(row, center, center);
 
-            a {
+            button {
                 @extend %btn;
                 @include font('roboto', 1.5rem, #e67e22, center, 'regular');
                 border: solid 2px #e67e22 !important;
