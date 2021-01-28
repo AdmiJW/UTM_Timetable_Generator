@@ -1,6 +1,4 @@
 
-
-
 /* =========================================================================================================
     This function, taking in the courseItems and courseTimeItems for each course, will check for clashing
     time slots.

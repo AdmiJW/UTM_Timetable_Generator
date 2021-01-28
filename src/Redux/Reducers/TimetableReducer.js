@@ -19,12 +19,16 @@ const initialState = defaultTimetable;
 
 //  Try to load the state from the local storage when the application first starts up
 {
+    const version = window.localStorage.getItem('version');
     const nextCourseID = window.localStorage.getItem('nextCourseID');
     const courseItems = JSON.parse( window.localStorage.getItem('courseItems') );
     const courseTimeItems = JSON.parse( window.localStorage.getItem('courseTimeItems') );
     const settings = JSON.parse( window.localStorage.getItem('settings') );
 
-    if (nextCourseID && courseItems && courseTimeItems && settings) {
+    //  If the version doesn't match, clear the localStorage
+    if (!version || version !== initialState.version)
+        window.localStorage.clear();
+    else if (nextCourseID && courseItems && courseTimeItems && settings) {
         initialState.nextCourseID = parseInt(nextCourseID);
         initialState.courseItems = courseItems;
         initialState.courseTimeItems = courseTimeItems;
@@ -195,6 +199,7 @@ function timetableReducer(state = initialState, action ) {
 
         case ActionTypes.SAVE_SETTING: {
             try {
+                window.localStorage.setItem('version', state.version);
                 window.localStorage.setItem("nextCourseID", state.nextCourseID);
                 window.localStorage.setItem("courseItems", JSON.stringify(state.courseItems) );
                 window.localStorage.setItem("courseTimeItems", JSON.stringify(state.courseTimeItems) );

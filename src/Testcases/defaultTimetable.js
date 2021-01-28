@@ -1,4 +1,6 @@
 const defaultTimetable = {
+    version: '1.0.0',
+
     isPreviewOpen: false,
     isSettingOpen: false,
 
