@@ -1,4 +1,4 @@
-import Converters from './Converters';
+
 
 
 /* =========================================================================================================
@@ -14,7 +14,6 @@ import Converters from './Converters';
  ========================================================================================================= */
 export default function clashChecker(courseItems, courseTimeItems) {
     const virtualTimetable = [ [], [], [], [], [] ];
-    const { dayOfWeekIndexConverter, sessionIndexConverter } = Converters;
 
     //  Loop through each timeItems in each courseItems. Put the courseItem into the virtualTimeTable in the
     //  correct slot. If there already exists a item before inserting, a timetable clash occurred.
@@ -24,20 +23,20 @@ export default function clashChecker(courseItems, courseTimeItems) {
 
         for (let timeIndex in courseTimes) {
             if (timeIndex === 'nextTimeID') continue;       //  Skip the nextID key
-
-            const row = dayOfWeekIndexConverter( courseTimes[timeIndex].dayOfWeek );    //Convert day of week to index
-            const col = sessionIndexConverter( courseTimes[timeIndex].session );        //Convert session to index
+            
+            const row = parseInt( courseTimes[timeIndex].dayOfWeek );    //Convert day of week to index
+            const col = parseInt( courseTimes[timeIndex].session );        //Convert session to index
 
             const slot = virtualTimetable[row][col];
 
-            //  Clash occurred
+            //  Clash occurred. Throw an error with information of clashing course and time slot
             if ( slot !== undefined ) {
-                throw new Error('Clashing Timetable Detected!\nThe course:\n\n' +
-                `${slot.courseName}, ${slot.lecturerName}, ${slot.courseCode}\n\n` +
-                'Clashes with:\n\n' +
-                `${courseObject.courseName}, ${courseObject.lecturerName}, ${courseObject.courseCode}\n\n` +
-                'At timeslot:\n' +
-                `   ${dayOfWeekIndexConverter(row, true)}, ${sessionIndexConverter(col, true)}`);
+                const err = new Error();
+                err.course1 = slot;
+                err.course2 = courseObject;
+                err.row = row;
+                err.col = col;
+                throw err;
             }
 
             virtualTimetable[row][col] = courseObject;

@@ -101,13 +101,17 @@
         }
     }
 
-    &__theme {
+    &__general {
         &__wrapper {
             padding: 10px;
             @include flex(row, space-around, center);
         }
         &__select {
             @include selectHTML(1.5rem);
+        }
+        &__subtitle {
+            @include font('roboto', 1.5rem, rgb(87, 87, 87), center, 'bold');
+            margin: 5px 0;
         }
     }
 

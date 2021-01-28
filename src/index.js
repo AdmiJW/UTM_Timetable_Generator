@@ -34,7 +34,7 @@ const webFonts = ['Orbitron', 'Roboto', 'Grandstander', 'Marvel', 'Cantora One']
 webFonts.forEach( font => {
     const fontObj = new FontFaceObserver(font);
     fontObj.load().then( (e) => {
-        console.log( `'${font}' Web Font is loaded Successfully`);
+      
     }).catch( (e) => {
         console.log( "Loading of Web Font '" + font + "' Failed!");
     });

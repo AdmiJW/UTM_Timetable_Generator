@@ -17,8 +17,8 @@ const defaultTimetable = {
         '0': {
             '0': {
                 timeID: 0,
-                dayOfWeek: 'Sun',
-                session: '02'
+                dayOfWeek: 0,
+                session: 0
             },
             nextTimeID: 1
         }
@@ -28,6 +28,7 @@ const defaultTimetable = {
 
     settings: {
         theme: 'default',
+        isIslamicWeekend: true,
 
         courseNameFontSize: 25, 
         lecturerNameFontSize: 15,

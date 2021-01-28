@@ -1,12 +1,10 @@
-
-
-
 /* =================================================================================================================
     Since I implement the Redux store such that it only stores some of the properties of the timetable, 
     this is the actual place which a full set of properties required to render the timetable is
     derived.
 =================================================================================================================*/
 
+import { sliceDayOfWeekArray } from '../LogicUtils/Converters';
 
 
 //  JSON containing the styling for each themes
@@ -115,14 +113,14 @@ const themeDeriver = {
 //  argument, it will construct a new Object consisting of full set of properties to generate the timetable
 function timetableConfigDeriver( stateTimetableSettings ) {
 
-    const { theme, courseNameFontSize, lecturerNameFontSize, courseCodeFontSize, gridWidth, gridHeight, noOfSessions }
+    const { theme, isIslamicWeekend, courseNameFontSize, lecturerNameFontSize, courseCodeFontSize, gridWidth, gridHeight, noOfSessions }
         = stateTimetableSettings;
 
     this.gridWidth = gridWidth;
     this.gridHeight = gridHeight;
     this.margin = 2;
 
-    this.dayOfWeeks = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday'];
+    this.dayOfWeeks = sliceDayOfWeekArray( isIslamicWeekend );
     this.times = [8,9,10,11,12,1,2,3,4,5,6];
     this.sessions = ['02','03','04','05','06','07','08','09','10','11','12'];
 

@@ -10,7 +10,7 @@ import { themeDeriver } from '../../LogicUtils/TimetableConfigDeriver';
 
 //  Setting Components
 import SettingLocalStorage from './SettingLocalStorage';
-import SettingTheme from './SettingTheme';
+import SettingGeneral from './SettingGeneral';
 import SettingGridProps from './SettingGridProps';
 import SettingNoSessions from './SettingNoSessions';
 
@@ -76,7 +76,8 @@ class TimetableSettings extends React.PureComponent {
                     <SettingLocalStorage saveSetting={ this.props.saveSetting } loadSetting={ this.props.loadSetting}
                         delSetting={ this.props.delSetting } />
 
-                    <SettingTheme theme={ this.props.settings.theme} changeSetting={ this.props.changeSetting } />
+                    <SettingGeneral theme={ this.props.settings.theme} isIslamicWeekend={ this.props.settings.isIslamicWeekend } 
+                        changeSetting={ this.props.changeSetting } />
 
                     <SettingGridProps settings={this.props.settings} renderProp={ this.state.renderProperties }
                         changeSetting={ this.props.changeSetting } />

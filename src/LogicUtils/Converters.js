@@ -7,20 +7,25 @@
     or session.
 ================================================================================================================= */
 
-const dayOfWeekArr = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu'];
+const dayOfWeekArr = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
 const sessionArr = ['02','03','04','05','06','07','08','09','10','11','12'];
 
-const Converters = {
-    dayOfWeekIndexConverter: (dayOfWeek, reverseMap=false) => {
-        if (reverseMap) return dayOfWeekArr[dayOfWeek];
-        return dayOfWeekArr.indexOf( dayOfWeek );
-    },
-    
-    sessionIndexConverter: (session, reverseMap=false) => {
-        if (reverseMap) return sessionArr[session];
-        return sessionArr.indexOf( session );
-    }
-};
 
-export default Converters;
+const dayOfWeekIndexConverter = (dayOfWeek, isIslamicWeekend, reverseMap=false) => {
+    if (reverseMap) return dayOfWeekArr[dayOfWeek + (isIslamicWeekend? 0: 1) ];
+    return dayOfWeekArr.indexOf( dayOfWeek ) - (isIslamicWeekend? 0: 1);
+}
+
+const sessionIndexConverter = (session, reverseMap=false) => {
+    if (reverseMap) return sessionArr[session];
+    return sessionArr.indexOf( session );
+}
+
+const sliceDayOfWeekArray = (isIslamicWeekend) => {
+    return isIslamicWeekend? dayOfWeekArr.slice(0, 5): dayOfWeekArr.slice(1);
+}
+
+
+
+export { dayOfWeekIndexConverter, sessionIndexConverter, sliceDayOfWeekArray };
 

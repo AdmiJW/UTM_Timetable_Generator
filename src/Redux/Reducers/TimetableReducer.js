@@ -1,9 +1,10 @@
 
 import ActionTypes from '../Actions/ActionTypes';
 
-//  Timetable Validator and Flattener
+//  Timetable Validator and Flattener, and Converter for dayOfWeek and Session
 import clashChecker from '../../LogicUtils/ClashChecker';
 import timeFlattener from '../../LogicUtils/TimeFlattener';
+import { dayOfWeekIndexConverter, sessionIndexConverter } from '../../LogicUtils/Converters.js';
 
 //  Testcases
 import defaultTimetable from '../../Testcases/defaultTimetable';
@@ -24,8 +25,7 @@ const initialState = defaultTimetable;
     const settings = JSON.parse( window.localStorage.getItem('settings') );
 
     if (nextCourseID && courseItems && courseTimeItems && settings) {
-        console.log("YES");
-        initialState.nextCourseID = nextCourseID;
+        initialState.nextCourseID = parseInt(nextCourseID);
         initialState.courseItems = courseItems;
         initialState.courseTimeItems = courseTimeItems;
         initialState.settings = settings;
@@ -90,8 +90,8 @@ function timetableReducer(state = initialState, action ) {
             const newCourseTimes = Object.assign( {}, courseTimeItems[courseIndexToAdd], { nextTimeID: nextTimeID + 1 }  );
             newCourseTimes[ nextTimeID ] = {
                 timeID: nextTimeID,
-                dayOfWeek: 'Sun',
-                session: '02'
+                dayOfWeek: 0,
+                session: 0
             };
             courseTimeItems = Object.assign( {}, courseTimeItems );
             courseTimeItems[ courseIndexToAdd ] = newCourseTimes;
@@ -129,7 +129,15 @@ function timetableReducer(state = initialState, action ) {
             try {
                 virtualTimetable = clashChecker( state.courseItems, state.courseTimeItems );
             } catch (e) {
-                window.alert(e);    //  If found the clashing timeslot, then alert the user. Don't change state
+                //  If found the clashing timeslot, then alert the user. Don't change state
+                window.alert(
+                    'Clashing Timetable Detected!\nThe course:\n\n' +
+                    `${e.course1.courseName}, ${e.course1.lecturerName}, ${e.course1.courseCode}\n\n` +
+                    'Clashes with:\n\n' +
+                    `${e.course2.courseName}, ${e.course2.lecturerName}, ${e.course2.courseCode}\n\n` +
+                    'At timeslot:\n' +
+                    `   ${dayOfWeekIndexConverter(e.row, state.settings.isIslamicWeekend, true)}, ${sessionIndexConverter(e.col, true)}`
+                );  
                 return state;
             }
             const flattenedVirtualTimetable = timeFlattener( virtualTimetable );
@@ -157,6 +165,9 @@ function timetableReducer(state = initialState, action ) {
             switch( eventTarget.id ) {
                 case 'theme':
                     settings.theme = eventTarget.value;
+                    break;
+                case 'weekend':
+                    settings.isIslamicWeekend = eventTarget.value === '0'? true: false;
                     break;
                 case 'courseName-fontsize':
                     settings.courseNameFontSize = Math.min( 70, Math.max(eventTarget.value, 0) );
@@ -198,7 +209,7 @@ function timetableReducer(state = initialState, action ) {
 
         case ActionTypes.LOAD_SETTING: {
             try {
-                const nextCourseID = window.localStorage.getItem('nextCourseID');
+                const nextCourseID = parseInt(window.localStorage.getItem('nextCourseID') );
                 const courseItems = JSON.parse( window.localStorage.getItem('courseItems') );
                 const courseTimeItems = JSON.parse( window.localStorage.getItem("courseTimeItems") );
                 const settings = JSON.parse( window.localStorage.getItem("settings") );

@@ -2,6 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+//  DayOfWeek and Session Converter
+import { dayOfWeekIndexConverter } from '../../LogicUtils/Converters';
+
 //  Redux Action Creator
 import TimeActions from '../../Redux/Actions/TimeActions';
 
@@ -48,7 +51,7 @@ class CourseTimeItem extends React.PureComponent {
 
 
     render() {
-        const courseID = this.props.courseID;
+        const { isIslamicWeekend, courseID } = this.props;
         const { timeID, dayOfWeek, session } = this.props.timeInfo;
 
         //=================================== JSX ==========================================
@@ -62,25 +65,25 @@ class CourseTimeItem extends React.PureComponent {
 
 
                     <select className='course-item__times__entry__dayOfWeek' value={ dayOfWeek } onChange={ this.changeTimeInfo } >
-                        <option value='Sun'>Sunday</option>
-                        <option value='Mon'>Monday</option>
-                        <option value='Tue'>Tuesday</option>
-                        <option value='Wed'>Wednesday</option>
-                        <option value='Thu'>Thursday</option>
+                        <option value='0'>{ dayOfWeekIndexConverter(0, isIslamicWeekend, true) }</option>
+                        <option value='1'>{ dayOfWeekIndexConverter(1, isIslamicWeekend, true) }</option>
+                        <option value='2'>{ dayOfWeekIndexConverter(2, isIslamicWeekend, true) }</option>
+                        <option value='3'>{ dayOfWeekIndexConverter(3, isIslamicWeekend, true) }</option>
+                        <option value='4'>{ dayOfWeekIndexConverter(4, isIslamicWeekend, true) }</option>
                     </select>
 
                     <select className='course-item__times__entry__session' value={ session } onChange={ this.changeTimeInfo } >
-                        <option value='02'>02 (8:00am - 8:50am)</option>
-                        <option value='03'>03 (9:00am - 9:50am)</option>
-                        <option value='04'>04 (10:00am - 10:50am)</option>
-                        <option value='05'>05 (11:00am - 11:50am)</option>
-                        <option value='06'>06 (12:00pm - 12:50pm)</option>
-                        <option value='07'>07 (1:00pm - 1:50pm)</option>
-                        <option value='08'>08 (2:00pm - 2:50pm)</option>
-                        <option value='09'>09 (3:00pm - 3:50pm)</option>
-                        <option value='10'>10 (4:00pm - 4:50pm)</option>
-                        <option value='11'>11 (5:00pm - 5:50pm)</option>
-                        <option value='12'>12 (6:00pm - 6:50pm)</option>
+                        <option value='0'>02 (8:00am - 8:50am)</option>
+                        <option value='1'>03 (9:00am - 9:50am)</option>
+                        <option value='2'>04 (10:00am - 10:50am)</option>
+                        <option value='3'>05 (11:00am - 11:50am)</option>
+                        <option value='4'>06 (12:00pm - 12:50pm)</option>
+                        <option value='5'>07 (1:00pm - 1:50pm)</option>
+                        <option value='6'>08 (2:00pm - 2:50pm)</option>
+                        <option value='7'>09 (3:00pm - 3:50pm)</option>
+                        <option value='8'>10 (4:00pm - 4:50pm)</option>
+                        <option value='9'>11 (5:00pm - 5:50pm)</option>
+                        <option value='10'>12 (6:00pm - 6:50pm)</option>
                     </select>
 
                 </div>
@@ -95,8 +98,17 @@ class CourseTimeItem extends React.PureComponent {
     Proptypes, MapStateToProps, MapDispatchToProps
 ==================================================== */
 CourseTimeItem.propTypes = {
+    isIslamicWeekend: PropTypes.bool.isRequired,
+
     deleteTime: PropTypes.func.isRequired,
     changeTimeInfo: PropTypes.func.isRequired
+}
+
+
+function mapStateToProps(store) {
+    return {
+        isIslamicWeekend: store.settings.isIslamicWeekend
+    }
 }
 
 
@@ -110,4 +122,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 
-export default connect(null, mapDispatchToProps)(CourseTimeItem);
+export default connect(mapStateToProps, mapDispatchToProps)(CourseTimeItem);

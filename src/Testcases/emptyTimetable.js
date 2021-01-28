@@ -12,6 +12,7 @@ const emptyTimetable = {
 
     settings: {
         theme: 'default',
+        isIslamicWeekend: true,
 
         courseNameFontSize: 25, 
         lecturerNameFontSize: 15,
