@@ -12,7 +12,6 @@ import { themeDeriver } from '../../LogicUtils/TimetableConfigDeriver';
 import SettingLocalStorage from './SettingLocalStorage';
 import SettingGeneral from './SettingGeneral';
 import SettingGridProps from './SettingGridProps';
-import SettingNoSessions from './SettingNoSessions';
 
 
 class TimetableSettings extends React.PureComponent {
@@ -63,7 +62,13 @@ class TimetableSettings extends React.PureComponent {
                         <i className="fas fa-times"></i>
                     </button>
                 
-                <h3 className='settings__title'>Settings</h3>
+                <h3 className='settings__title'>
+                    <span role='img' aria-label='spanner logo'>🛠️</span> 
+                    Settings
+                    <span role='img' aria-label='spanner logo'>🛠️</span> 
+                </h3>
+                
+                <p className='settings__version'>Version: v {this.props.version}</p>
 
                 <p className='settings__sizeEstimateMsg'>
                     Your timetable should be of size:<br/>
@@ -77,14 +82,10 @@ class TimetableSettings extends React.PureComponent {
                         delSetting={ this.props.delSetting } />
 
                     <SettingGeneral theme={ this.props.settings.theme} isIslamicWeekend={ this.props.settings.isIslamicWeekend } 
-                        changeSetting={ this.props.changeSetting } />
+                        noOfSessions={ this.props.settings.noOfSessions } changeSetting={ this.props.changeSetting } />
 
                     <SettingGridProps settings={this.props.settings} renderProp={ this.state.renderProperties }
                         changeSetting={ this.props.changeSetting } />
-
-                    <SettingNoSessions noOfSessions={ this.props.settings.noOfSessions}
-                        changeSetting={ this.props.changeSetting } />
-                    
                 </div>
             </div>
         );
@@ -101,6 +102,7 @@ class TimetableSettings extends React.PureComponent {
     Proptypes, MapStateToProps, MapDispatchToProps
 ==================================================== */
 TimetableSettings.propTypes = {
+    version: PropTypes.string.isRequired,
     isSettingOpen: PropTypes.bool.isRequired,
     settings: PropTypes.object.isRequired,
 
@@ -114,6 +116,7 @@ TimetableSettings.propTypes = {
 
 function mapStateToProps( store ) {
     return {
+        version: store.version,
         isSettingOpen: store.isSettingOpen,
         settings: store.settings
     };

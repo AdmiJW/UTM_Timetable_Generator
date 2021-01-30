@@ -76,9 +76,11 @@ function TimetableBaseDrawer( canvas, derivedConfig ) {
     });
 
     //  Times (8am, 9am...)
+    //  Starting time is [8 until 19]. From 8 until 11 is a.m. Otherwise p.m.
+    //  Ending time is [9 until 20]. From 9 until 11 is a.m. Otherwise p.m.
     times.forEach( (time, idx) => {
-        const beginTime = `${time}:00 ${ time >= 8 && time !== 12? 'a.m':'p.m'}`;
-        const endTime = `${time}:50 ${ time >= 8 && time !== 12? 'a.m':'p.m'}`;
+        const beginTime = `${time}:00 ${ time >= 8 && time <= 11? 'a.m':'p.m'}`;
+        const endTime = `${ (time % 12) + 1 }:00 ${ time >= 8 && time <= 10? 'a.m':'p.m'}`;
 
         rects.push( rectFactory( (gridWidth) + (gridWidth * idx + margin), margin, 
             actualWidth, row1ActualHeight, sideColorBG) );

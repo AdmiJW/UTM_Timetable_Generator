@@ -41,19 +41,23 @@
     }
 
     &__title {
-        @include font('roboto', 4.5rem, black, center, 'light');
+        @include font('roboto', 4.5rem, black, center, 'bold');
     }
     &__sizeEstimateMsg {
-        @include font('roboto', 1.5rem, grey, center, 'light');
+        @include font('roboto', 1.8rem, grey, center, 'light');
 
         &__value {
             color: red;
         }
     }
 
+    &__version {
+        @include font('roboto', 1.3rem, grey, center, 'light');
+    }
+
     &__wrapper {
         @include flex(column, flex-start, center);
-        padding: 20px 5px;
+        margin: 20px 5px;
         overflow-y: auto;
         overflow-x: hidden;
     }
@@ -64,7 +68,7 @@
         background-color: rgb(228, 228, 228);
         border-radius: 10px;
         box-shadow: 0px -5px 0px 0px darken(white, 20%);
-        width: unquote(' max(70%, 250px) ');
+        width: unquote(' max(90%, 250px) ');
 
         &__title {
             @include font('roboto', 2.5rem, rgb(87, 87, 87), center, 'bold');
@@ -75,6 +79,27 @@
     &__savedel {
         &__wrapper {
             @include flex(row, center, center);
+        }
+        &__div {
+            text-align: center;
+            margin: 15px 0;
+
+            label {
+                @include font('roboto', 1.5rem, grey, center, 'black');
+            }
+
+            &:first-child button {
+                box-shadow: 0px 5px 0px 0px darken($btn-primary-bg, 10%);
+                background-color: $btn-primary-bg !important;
+            }
+            &:nth-child(2) button {
+                box-shadow: 0px 5px 0px 0px darken($btn-success-bg, 10%);
+                background-color: $btn-success-bg !important;
+            }
+            &:nth-child(3) button {
+                box-shadow: 0px 5px 0px 0px darken($btn-danger-bg, 10%);
+                background-color: $btn-danger-bg !important;
+            }
         }
         &__btn {
             @extend %btn;
@@ -87,30 +112,24 @@
                 box-shadow: none !important;
             }
         }
-        &__btn:first-child {
-            box-shadow: 0px 5px 0px 0px darken($btn-primary-bg, 10%);
-            background-color: $btn-primary-bg !important;
-        }
-        &__btn:nth-child(2) {
-            box-shadow: 0px 5px 0px 0px darken($btn-success-bg, 10%);
-            background-color: $btn-success-bg !important;
-        }
-        &__btn:nth-child(3) {
-            box-shadow: 0px 5px 0px 0px darken($btn-danger-bg, 10%);
-            background-color: $btn-danger-bg !important;
-        }
+        
     }
 
     &__general {
+
         &__wrapper {
             padding: 10px;
             @include flex(row, space-around, center);
+            
+            & > div {
+                @include flex(column, center, stretch);
+            }
         }
         &__select {
             @include selectHTML(1.5rem);
         }
         &__subtitle {
-            @include font('roboto', 1.5rem, rgb(87, 87, 87), center, 'bold');
+            @include font('roboto', 2.3rem, rgb(87, 87, 87), center, 'bold');
             margin: 5px 0;
         }
     }
@@ -149,6 +168,32 @@
         text-align: center;
         &__select {
             @include selectHTML(1.5rem);
+        }
+    }
+}
+
+
+
+//============================
+// MEDIA QUERIES 
+//============================
+// On smaller screen, I simply make some of the font size to be smaller
+@media screen and (max-width: 500px) {
+    .settings {
+        &__title {
+            font-size: 3.5rem;
+        }
+
+        &__sizeEstimateMsg {
+            font-size: 1.5rem;
+        }
+
+        &__category__title {
+            font-size: 2rem;
+        }
+
+        &__general__subtitle {
+            font-size: 1.3rem;
         }
     }
 }

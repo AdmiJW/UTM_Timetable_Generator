@@ -254,9 +254,9 @@ function timetableReducer(state = initialState, action ) {
 const courseFactory = ( nextID ) => {
     return {
         courseID: nextID ++,
-        courseName: '',
-        lecturerName: '',
-        courseCode: ''
+        courseName: 'Course Name',
+        lecturerName: 'Lecturer Name',
+        courseCode: 'Course Code'
     };
 };
 

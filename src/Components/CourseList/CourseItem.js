@@ -100,7 +100,7 @@ class CourseItem extends React.PureComponent {
                         </button>
                         <button type='button' className='course-item__info__buttons__add-button'
                             onClick={ this.addTime } >
-                            +
+                            <i className="far fa-clock"></i>
                         </button>
                     </div>
 

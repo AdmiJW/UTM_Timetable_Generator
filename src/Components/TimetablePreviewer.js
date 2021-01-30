@@ -59,19 +59,20 @@ class TimetablePreviewer extends React.Component {
     //  Opens a new tab (Hopefully for those who unable to directly download from the download button, this works
     //  for them). Then on the new tab write the image data into it.
     openTabBtnHandler() {
-        const w = window.open();
-        w.opener = null;
         const img = new Image();
         img.src = this.canvasStage.toDataURL();
-        img.onload = () => {
+        img.onload = ()=> {
+            const w = window.open();
             w.document.write(`
-                <a style='display: inline-block; font-size: 30px; padding: 5px; margin: 10px; border-radius: 10px; text-decoration: none;
-                    background-color: #3498db; color: white;' 
-                    href=${img.src} download='timetable'>Download Image</a>
-                ${img.outerHTML}
-            `);
+            <style>
+                img {
+                    width: 100%;
+                    height: auto;
+                }
+            </style>
+            ` + img.outerHTML);
             w.document.close();
-        };
+        }
     }
 
     

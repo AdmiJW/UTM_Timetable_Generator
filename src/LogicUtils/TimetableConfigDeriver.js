@@ -121,8 +121,8 @@ function timetableConfigDeriver( stateTimetableSettings ) {
     this.margin = 2;
 
     this.dayOfWeeks = sliceDayOfWeekArray( isIslamicWeekend );
-    this.times = [8,9,10,11,12,1,2,3,4,5,6];
-    this.sessions = ['02','03','04','05','06','07','08','09','10','11','12'];
+    this.times = [8,9,10,11,12,1,2,3,4,5,6,7];
+    this.sessions = ['02','03','04','05','06','07','08','09','10','11','12','13'];
 
     this.themeSettings = themeDeriver[ theme ];
     this.courseNameFontSize = courseNameFontSize;

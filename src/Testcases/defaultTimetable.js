@@ -1,5 +1,5 @@
 const defaultTimetable = {
-    version: '1.0.0',
+    version: '1.1.0',
 
     isPreviewOpen: false,
     isSettingOpen: false,
@@ -9,9 +9,9 @@ const defaultTimetable = {
     courseItems: {
         '0': {
         courseID: 0,
-        courseName: 'Enter Course Name',
-        lecturerName: 'Enter Lecturer Name',
-        courseCode: 'Enter Course Code'
+        courseName: 'Course Name',
+        lecturerName: 'Lecturer Name',
+        courseCode: 'Course Code'
         }
     },
 
@@ -39,7 +39,7 @@ const defaultTimetable = {
         gridWidth: 200,
         gridHeight: 150,
 
-        noOfSessions: 11
+        noOfSessions: 12
     }
 }
 

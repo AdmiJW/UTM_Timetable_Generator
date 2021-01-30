@@ -28,6 +28,7 @@
 
         @include btn-rounded(50px, $btn-success-bg, 5rem);
         @include btn-ripple-effect($btn-success-bg, 1s);
+        font-weight: 400;
     }
 
     &__view-button {
@@ -101,9 +102,26 @@
             
             &__add-button {
                 @extend %btn;
-                @include btn-rounded(40px, $btn-success-bg, 3rem);
+                @include btn-rounded(40px, $btn-success-bg, 2.8rem);
                 @include btn-ripple-effect($btn-success-bg, 1s);
                 position: relative;
+
+                i {
+                    transform: translate(0, 0);
+                }
+
+                &::after {
+                    content: '+';
+                    position: absolute;
+                    width: 13px; height: 13px;
+                    border-radius: 50%;
+                    line-height: 14px;
+                    transform: translate(-55%, 55%);
+
+                    color: $btn-success-bg !important;
+                    background-color: white;
+                    @include font('roboto', 15px, white, center, 'black');
+                }
             }
 
             button + button {
@@ -150,6 +168,7 @@
             @extend %btn;
             @include btn-rounded( var(--time-delete-button-size) , $btn-danger-bg, 1rem );
             @include btn-ripple-effect ($btn-danger-bg, 1s);
+            font-weight: 400;
 
             position: absolute;
             right: 5px;

@@ -7,7 +7,11 @@ function SettingGridProps(props) {
 
     return (
         <div className='settings__category settings__gridProps'>
-            <h4 className='settings__category__title'>Grid Properties</h4>
+            <h4 className='settings__category__title'>
+                <span role='img' aria-label='ruler logo'>📏</span> 
+                Grid Properties
+                <span role='img' aria-label='ruler logo'>📏</span> 
+            </h4>
 
             <div className='settings__gridProps__wrapper'>
                 <div className='settings__gridProps__inputGroup'>

@@ -60,7 +60,7 @@ class CourseTimeItem extends React.PureComponent {
 
                     <button type='button' className='course-item__times__entry__delete-button'
                         onClick={ this.deleteTime } >
-                        X
+                        ✖
                     </button>
 
 
@@ -73,17 +73,18 @@ class CourseTimeItem extends React.PureComponent {
                     </select>
 
                     <select className='course-item__times__entry__session' value={ session } onChange={ this.changeTimeInfo } >
-                        <option value='0'>02 (8:00am - 8:50am)</option>
-                        <option value='1'>03 (9:00am - 9:50am)</option>
-                        <option value='2'>04 (10:00am - 10:50am)</option>
-                        <option value='3'>05 (11:00am - 11:50am)</option>
-                        <option value='4'>06 (12:00pm - 12:50pm)</option>
-                        <option value='5'>07 (1:00pm - 1:50pm)</option>
-                        <option value='6'>08 (2:00pm - 2:50pm)</option>
-                        <option value='7'>09 (3:00pm - 3:50pm)</option>
-                        <option value='8'>10 (4:00pm - 4:50pm)</option>
-                        <option value='9'>11 (5:00pm - 5:50pm)</option>
-                        <option value='10'>12 (6:00pm - 6:50pm)</option>
+                        <option value='0'>02 (8:00am - 9:00am)</option>
+                        <option value='1'>03 (9:00am - 10:00am)</option>
+                        <option value='2'>04 (10:00am - 11:00am)</option>
+                        <option value='3'>05 (11:00am - 12:00pm)</option>
+                        <option value='4'>06 (12:00pm - 1:00pm)</option>
+                        <option value='5'>07 (1:00pm - 2:00pm)</option>
+                        <option value='6'>08 (2:00pm - 3:00pm)</option>
+                        <option value='7'>09 (3:00pm - 4:00pm)</option>
+                        <option value='8'>10 (4:00pm - 5:00pm)</option>
+                        <option value='9'>11 (5:00pm - 6:00pm)</option>
+                        <option value='10'>12 (6:00pm - 7:00pm)</option>
+                        <option value='11'>13 (7:00pm - 8:00pm)</option>
                     </select>
 
                 </div>
