@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f54cbe506d2170da2c86e823cbc4ff25",
+    "revision": "18d4230d4be38dde4958d59646a6b412",
     "url": "/UTM_Timetable_Generator/index.html"
   },
   {
-    "revision": "8c40277191f6e343f1a1",
-    "url": "/UTM_Timetable_Generator/static/css/main.c18f24f7.chunk.css"
+    "revision": "929d2fceaa2da6fca90e",
+    "url": "/UTM_Timetable_Generator/static/css/main.3f27afe3.chunk.css"
   },
   {
     "revision": "0314f214afe6f00afa3d",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/UTM_Timetable_Generator/static/js/2.15ba6a76.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "8c40277191f6e343f1a1",
-    "url": "/UTM_Timetable_Generator/static/js/main.afa8ec52.chunk.js"
+    "revision": "929d2fceaa2da6fca90e",
+    "url": "/UTM_Timetable_Generator/static/js/main.60caa6d2.chunk.js"
   },
   {
     "revision": "4365f880ff53e37826fa",
