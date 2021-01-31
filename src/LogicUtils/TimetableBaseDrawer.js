@@ -72,7 +72,7 @@ function TimetableBaseDrawer( canvas, derivedConfig ) {
         rects.push( rectFactory(margin, (gridHeight) + (gridHeight * idx + margin), 
             actualWidth, actualHeight, sideColorBG) );
         texts.push( textFactory(dayOfWeek, margin, (gridHeight) + (gridHeight * idx + margin),
-            actualWidth, actualHeight, 28, labelFontColor, fontFamily, 'bold') );
+            actualWidth, actualHeight, 28, labelFontColor, fontFamily) );
     });
 
     //  Times (8am, 9am...)
