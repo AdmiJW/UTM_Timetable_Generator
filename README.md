@@ -20,11 +20,11 @@ Manual Timetable Generator specifically for UTM students. However, students from
 
 If you have a single time slot that spans over 1 hour, simply stack them as follows:
 
-![Stacked Time Slot 1](./resources/Consecutive1.jpg)
+![Stacked Time Slot 1](./resources/Consecutive1.png)
 
 The timetable drawing program will be able to detect consecutive timeslots, and draw them merged
 
-![Stacked Time Slot 2](./resources/Consecutive2.jpg)
+![Stacked Time Slot 2](./resources/Consecutive2.png)
 
 
 
